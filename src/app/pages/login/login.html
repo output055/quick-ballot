@@ -1,0 +1,72 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()" class="space-y-4 text-white">
+  <h1 class="text-2xl md:text-4xl font-bold md:font-extrabold text-white mb-2">Welcome Back - Login</h1>
+      <p class="text-white mb-8">Enter your email and password to access your account.</p>
+  <div>
+    <label class="text-sm text-white block mb-2">Email</label>
+    <input formControlName="email" type="email" placeholder="quickballot@company.com"
+     class="w-full border  rounded-lg p-3 pr-12 focus:outline-none focus:border-2 focus:border-Qaccent placeholder-gray-100" />
+  </div>
+
+
+  <div>
+    <label class="text-sm text-white block mb-2">Password</label>
+    <div class="relative">
+      <input formControlName="password" type="password" placeholder="Password............"
+        class="w-full border  rounded-lg p-3 pr-12 focus:outline-none focus:border-2 focus:border-Qaccent placeholder-gray-100" />
+      <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-black" (click)="toggleShow()">
+        <!-- eye icon -->
+        <svg *ngIf="!show" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-width="2"
+            d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z" />
+          <path stroke="currentColor" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+        </svg>
+
+        <svg *ngIf="show" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+          <path
+            d="m4 15.6 3.055-3.056A4.913 4.913 0 0 1 7 12.012a5.006 5.006 0 0 1 5-5c.178.009.356.027.532.054l1.744-1.744A8.973 8.973 0 0 0 12 5.012c-5.388 0-10 5.336-10 7A6.49 6.49 0 0 0 4 15.6Z" />
+          <path
+            d="m14.7 10.726 4.995-5.007A.998.998 0 0 0 18.99 4a1 1 0 0 0-.71.305l-4.995 5.007a2.98 2.98 0 0 0-.588-.21l-.035-.01a2.981 2.981 0 0 0-3.584 3.583c0 .012.008.022.01.033.05.204.12.402.211.59l-4.995 4.983a1 1 0 1 0 1.414 1.414l4.995-4.983c.189.091.386.162.59.211.011 0 .021.007.033.01a2.982 2.982 0 0 0 3.584-3.584c0-.012-.008-.023-.011-.035a3.05 3.05 0 0 0-.21-.588Z" />
+          <path
+            d="m19.821 8.605-2.857 2.857a4.952 4.952 0 0 1-5.514 5.514l-1.785 1.785c.767.166 1.55.25 2.335.251 6.453 0 10-5.258 10-7 0-1.166-1.637-2.874-2.179-3.407Z" />
+        </svg>
+
+      </button>
+    </div>
+  </div>
+
+
+  <div class="flex flex-col md:flex-row items-center justify-between text-sm text-white">
+    <label class="flex items-center gap-2">
+      <input type="checkbox" class="w-4 h-4" />
+      <span>Remember Me</span>
+    </label>
+    <a class="text-white" href="#">Forgot Your Password?</a>
+  </div>
+
+
+  <div>
+    <button type="submit"
+      class="w-full py-3 rounded-lg bg-gradient-to-r from-Qaccent to-Qmaink text-white font-semibold hover:opacity-95 flex items-center justify-center cursor-pointer transition disabled:opacity-50">
+      <span *ngIf="!loading">Log In</span>
+      <span *ngIf="loading" class="flex items-center gap-2">
+    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor"
+            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+    </svg>
+    Loading...
+  </span>
+    </button>
+  </div>
+
+  <!-- Error Messages -->
+  <div *ngIf="errorMessage" class="px-4 py-2 w-full flex outline outline-Qaccent gap-2 item-center rounded-lg">
+    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+  <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m6 6 12 12m3-6a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+</svg>
+
+<span class="text-white capitalize">{{errorMessage}}</span>
+  </div>
+</form>

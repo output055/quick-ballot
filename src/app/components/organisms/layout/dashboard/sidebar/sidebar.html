@@ -1,1 +1,13 @@
-<p>sidebar works!</p>
+<div class="w-64 bg-gray-800 text-white h-screen p-4">
+  <h2 class="text-xl font-bold mb-6">QuickBallot</h2>
+  <ul>
+    <li *ngFor="let link of roleLinks" class="mb-3">
+      <a
+        [routerLink]="link.path"
+        class="block px-4 py-2 rounded hover:bg-gray-700 transition"
+      >
+        {{ link.label }}
+      </a>
+    </li>
+  </ul>
+</div>
