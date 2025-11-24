@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { SupabaseService } from '../../core/superbase/supabase';
@@ -27,7 +27,7 @@ loading = false;
 
   constructor(
     private fb: FormBuilder,
-    @Inject(SupabaseService) private supabase: SupabaseService,
+    private supabase: SupabaseService,
     private router: Router
   ) {}
 

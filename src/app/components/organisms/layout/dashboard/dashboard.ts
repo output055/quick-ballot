@@ -1,22 +1,22 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Sidebar } from './sidebar/sidebar';
 import { SupabaseService } from '../../../../core/superbase/supabase';
+import { Header } from "./header/header";
 
 
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterOutlet, Sidebar],
+  imports: [RouterOutlet, Sidebar, Header],
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.scss'],
-  providers: [SupabaseService],
 })
 export class Dashboard {
   userRole: string = '';
 
-  constructor(@Inject(SupabaseService) private supabase: SupabaseService) {}
+  constructor(private supabase: SupabaseService) {}
 
   async ngOnInit() {
     const session = await this.supabase.getSession();

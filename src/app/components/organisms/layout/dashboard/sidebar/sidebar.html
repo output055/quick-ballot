@@ -1,13 +1,30 @@
-<div class="w-64 bg-gray-800 text-white h-screen p-4">
-  <h2 class="text-xl font-bold mb-6">QuickBallot</h2>
+<div class="w-full flex flex-col bg-Qmain text-white p-2">
+  <div class="flex gap-2 items-center w-full">
+
+    <button class="lg:hidden ml-auto" (click)="toggleSidebar()">
+      <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+        width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="m15 9-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      </svg>
+
+    </button>
+
+  </div>
+
   <ul>
-    <li *ngFor="let link of roleLinks" class="mb-3">
-      <a
-        [routerLink]="link.path"
-        class="block px-4 py-2 rounded hover:bg-gray-700 transition"
-      >
-        {{ link.label }}
-      </a>
-    </li>
+    <ng-container *ngFor="let link of filteredLinks">
+      <li *ngFor="let _group of [link]" class="mb-3 ">
+        <ng-container *ngFor="let item of link.links" class="">
+          <a [routerLink]="item.path" routerLinkActive="bg-gray-700" [routerLinkActiveOptions]="{ exact: true }"
+            class="block px-4 py-2 rounded hover:bg-gray-700 transition">
+            <span class="flex items-center gap-2">
+              <ng-icon [name]="item.icon"></ng-icon>
+              <span class="white-space-nowrap trancated">{{ item.label }}</span>
+            </span>
+          </a>
+        </ng-container>
+      </li>
+    </ng-container>
   </ul>
 </div>

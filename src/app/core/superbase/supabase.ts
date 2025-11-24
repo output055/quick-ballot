@@ -10,7 +10,15 @@ export class SupabaseService {
   constructor() {
     this.supabase = createClient(
       'https://ysvawawllysojiojfesn.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzdmF3YXdsbHlzb2ppb2pmZXNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM2NjU0MzIsImV4cCI6MjA3OTI0MTQzMn0.9HYgdL1E0N3NH5lf0xZ7H-Ys0ZrbNFb5Ej9q6kf045E'
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzdmF3YXdsbHlzb2ppb2pmZXNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM2NjU0MzIsImV4cCI6MjA3OTI0MTQzMn0.9HYgdL1E0N3NH5lf0xZ7H-Ys0ZrbNFb5Ej9q6kf045E',
+      {
+        // Prevent supabase-js from persisting session to storage which can
+        // trigger Navigator Lock acquisition across tabs. This avoids
+        // NavigatorLockAcquireTimeoutError in environments where locks fail.
+        auth: {
+          persistSession: false,
+        },
+      }
     );
   }
 
@@ -28,5 +36,10 @@ export class SupabaseService {
   // LOG OUT
   async signOut() {
     return this.supabase.auth.signOut();
+  }
+
+  // GET CLIENT
+  get client(): SupabaseClient {
+    return this.supabase;
   }
 }

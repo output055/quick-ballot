@@ -1,1 +1,47 @@
-<p>header works!</p>
+<header *ngIf="!header" class="w-full bg-Qmain text-white shadow-sm px-4 py-3 flex items-center justify-between">
+  <!-- Left: Title or Logo -->
+  <div *ngIf="!header" class="flex gap-2 items-center">
+    <button (click)="toggleSidebar()"
+      class="p-2 rounded-md lg:hidden hover:bg-gray-200/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-Qmain focus:ring-white">
+      <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+        width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h10" />
+      </svg>
+
+    </button>
+    <h2 class="text-xl font-bold">QuickBallot</h2>
+  </div>
+
+
+
+  <!-- Right: Profile -->
+  <div *ngIf="!header" class="relative" (click)="toggleMenu()">
+    <div class="flex items-center space-x-3 cursor-pointer select-none">
+      <img src="https://i.pravatar.cc/80?img=12" alt="profile" class="w-10 h-10 rounded-full object-cover border" />
+      <span class="font-medium hidden lg:block">{{ userName }}</span>
+      <span class="font-medium hidden lg:block">{{ role }}</span>
+
+      <!-- Dropdown icon -->
+      <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+
+    <!-- Dropdown Menu -->
+    <div *ngIf="menuOpen" class="absolute right-0 mt-3 w-60 bg-Qmain  rounded-lg shadow-lg py-2 transition-all z-50">
+      <button class="w-full text-left px-4 py-2 hover:bg-Qlight text-sm">
+        My Profile
+      </button>
+      <button class="w-full text-left px-4 py-2 hover:bg-Qlight text-sm">
+        Settings
+      </button>
+      <button class="w-full text-left px-4 py-2 text-red-600 hover:bg-Qlight text-sm">
+        Logout
+      </button>
+    </div>
+  </div>
+
+</header>
+<div>
+  <app-sidebar [class.hidden]="!SharedFunctions.sidebar"></app-sidebar>
+</div>

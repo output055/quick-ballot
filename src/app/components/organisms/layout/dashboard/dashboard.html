@@ -1,7 +1,25 @@
+<section class="grid h-screen grid-rows-11">
+
+   <!-- header -->
+  <div class="row-span-1 h-[100%] sticky top-0 z-10">
+
+    <app-header></app-header>
+  </div>
+
+<!-- body -->
+  <div class="row-span-10 w-full grid grid-cols-6 grid-row-1 ">
+    <!-- sidebar -->
+    <div class="bg-Qmain col-span-1 lg:col-span-1 hidden lg:block h-full overflow-hidden">
+    <app-sidebar></app-sidebar>
+    </div>
+
+    <!-- Main Content -->
+    <div class="bg-Qlight flex flex-col md:p-4 col-span-6 lg:col-span-5 scroll-overflow">
+      <router-outlet>
+      </router-outlet>
+    </div>
+
+  </div>
 
 
-  <app-sidebar [role]="userRole"></app-sidebar>
-<router-outlet>
-
-</router-outlet>
-
+</section>
