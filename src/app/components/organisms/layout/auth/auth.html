@@ -1,11 +1,11 @@
-<div class="min-h-screen flex items-center justify-center p-4 md:p-8 bg-Qmain">
-  <div class="w-full max-w-7xl bg-Qlight rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2">
+<div class="min-h-screen flex items-center justify-center p-4 md:p-8 bg-slate-50">
+  <div class="w-full max-w-7xl bg-white border border-slate-200 rounded-2xl shadow-lg overflow-hidden grid grid-cols-1 md:grid-cols-2">
 
 
     <!-- LEFT Form panel -->
-    <div class="p-4 md:p-12 md:p-16 flex flex-col justify-center">
+    <div class="p-4 md:p-12 md:p-16 flex flex-col justify-center text-slate-900">
       <div class="flex items-center gap-3 mb-6">
-        <div class="w-10 h-10 rounded-full bg-Qaccent flex items-center justify-center">
+        <div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center">
           <!-- simple logo mark -->
           <span *ngIf="Loading" class="flex items-center gap-2">
             <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -15,13 +15,13 @@
             </svg>
           </span>
           <span *ngIf="!Loading">
-            <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="Qaccent" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 4h12v16H6z" fill="currentColor" />
           </svg>
           </span>
 
         </div>
-        <span class="text-white font-semibold text-lg">Quick Ballot</span>
+        <span class="text-slate-900 font-semibold text-lg">Quick Ballot</span>
       </div>
       <router-outlet></router-outlet>
     </div>
@@ -29,7 +29,7 @@
 
     <!-- RIght Form p -->
     <div
-      class="hidden md:flex flex-col gap-2 justify-center bg-gradient-to-l from-Qaccent to-Qaccentmain text-white w-full rounded-l-xl p-10 ">
+      class="hidden md:flex flex-col gap-2 justify-center bg-gradient-to-l from-red-600 to-rose-500 text-white w-full rounded-l-xl p-10 ">
       <h2 class="text-3xl font-bold mb-2">Welcome to QuickBallot</h2>
       <p class="text-md opacity-90 ">
         Manage your elections securely, vote from anywhere,

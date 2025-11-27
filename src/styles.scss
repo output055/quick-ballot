@@ -14,3 +14,47 @@ button{
 // *{
 //   outline: red 2px solid;
 // }
+
+/* Global light theme base */
+@layer base {
+  html, body {
+    @apply bg-slate-50 text-slate-900;
+  }
+}
+
+/* Reusable UI tokens */
+@layer components {
+  .card {
+    @apply bg-white border border-slate-200 rounded-xl shadow-sm;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition;
+  }
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition;
+    @apply bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition;
+    @apply bg-white text-slate-700 border border-slate-200 hover:bg-slate-50;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition;
+    @apply bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200;
+  }
+
+  .input {
+    @apply w-full p-3 rounded-md bg-white border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500;
+  }
+  .select {
+    @apply w-full p-3 rounded-md bg-white border border-slate-300 text-slate-900 focus:outline-none focus:ring-2 focus:ring-red-500;
+  }
+  .textarea {
+    @apply w-full p-3 rounded-md bg-white border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-500;
+  }
+
+  .chip {
+    @apply px-2 py-1 rounded-full text-xs text-white;
+  }
+}

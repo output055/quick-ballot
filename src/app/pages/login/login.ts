@@ -43,7 +43,6 @@ loading = false;
     this.loading = true;
 
     const { email, password } = this.loginForm.value;
-    console.log(email, password);
     const { data, error } = await this.supabase.signIn(email, password);
 
     this.loading = false;
@@ -53,7 +52,7 @@ loading = false;
       return;
     }
 
-    // Login successful
+    // Login successful: navigate to dashboard
     this.router.navigate(['/dash']);
   }
 }

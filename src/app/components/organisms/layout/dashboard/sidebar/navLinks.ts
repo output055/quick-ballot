@@ -1,3 +1,4 @@
+import { User } from '@supabase/supabase-js';
 
 export const Links = [
   {
@@ -7,13 +8,22 @@ export const Links = [
         label: 'Dashboard',
         path: '/dash',
         icon: 'heroHome',
+        role: ['super_admin', 'admin', 'voter'],
+      },
+      {
+        label: 'User Management',
+        path: '/dash/user-management',
+        icon: 'heroUsers',
+        role: ['super_admin', 'admin'],
       },
       {
         label: 'Create New User',
         path: '/dash/create-user',
-        icon: 'heroUsers',
+        icon: 'heroUserPlus',
+        role: ['super_admin', 'admin'],
       },
     ],
+    role: ['super_admin', 'admin', 'voter'],
   },
 ];
 

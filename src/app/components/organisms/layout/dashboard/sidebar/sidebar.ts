@@ -5,7 +5,7 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Links } from './navLinks';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { heroUsers, heroHome } from '@ng-icons/heroicons/outline';
+import { heroUsers, heroHome, heroUserPlus } from '@ng-icons/heroicons/outline';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './sidebar.html',
   standalone: true,
   imports: [CommonModule, RouterLink, NgIcon, RouterLinkActive],
-  viewProviders: [provideIcons({ heroUsers,heroHome })]
+  viewProviders: [provideIcons({ heroUsers,heroHome, heroUserPlus })]
 })
 export class Sidebar implements OnInit, OnDestroy {
   private _sub: Subscription | null = null;

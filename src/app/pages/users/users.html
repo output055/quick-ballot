@@ -1,0 +1,96 @@
+<div class="flex items-center justify-between mb-4">
+  <div class="text-sm text-gray-600">
+    Total Users:
+    <ng-container *ngIf="vm$ | async as vm; else countSkeleton">
+      <span class="text-gray-400">{{ vm.users.length }}</span>
+    </ng-container>
+    <ng-template #countSkeleton>
+      <span class="text-gray-400"> 0</span>
+    </ng-template>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2 bg-white border rounded-lg px-3 py-1 shadow-sm">
+      <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" />
+      </svg>
+      <input (input)="searchTerm$.next($any($event.target).value)" placeholder="Search"
+        class="outline-none text-sm text-gray-700 placeholder-gray-400 w-64" />
+    </div>
+
+    <button class="flex items-center gap-2 px-3 py-2 border rounded-lg text-sm text-gray-700 bg-white">
+      <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 12h18M3 20h18" />
+      </svg>
+      Filters
+    </button>
+
+    <button class="bg-black text-white px-4 py-2 rounded-lg text-sm flex items-center gap-2">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+      </svg>
+      Add user
+    </button>
+  </div>
+</div>
+
+<div class="bg-Qdark rounded-lg shadow-sm overflow-hidden border">
+  <div class="overflow-x-auto">
+    <ng-container *ngIf="vm$ | async as vm; else loading">
+      <div *ngIf="vm.error" class="px-6 py-3 text-sm text-red-700 bg-red-50 border-b border-red-200">
+        {{ vm.error }}
+      </div>
+      <table class="min-w-full divide-y divide-Qdark text-sm">
+        <thead class="bg-Qdark text-white">
+          <tr>
+            <th scope="col" class="px-6 py-3 text-left font-medium">User name</th>
+            <th scope="col" class="px-6 py-3 text-left font-medium">Access</th>
+            <th scope="col" class="px-6 py-3 text-left font-medium">Last active</th>
+            <th scope="col" class="px-6 py-3 text-left font-medium">Date added</th>
+            <th scope="col" class="px-6 py-3 text-left font-medium">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-Qdark bg-Qlight">
+          <tr *ngIf="!vm.error && vm.users.length === 0">
+            <td colspan="4" class="px-6 py-8 text-center text-slate-500">No users found.</td>
+          </tr>
+          <tr *ngFor="let user of vm.users" class="hover:bg-Qdark/50">
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-3">
+                <img [src]="user.avatarUrl || 'https://i.pravatar.cc/48?img=1'" alt="avatar"
+                  class="w-10 h-10 rounded-full border" />
+                <div>
+                  <div class="text-sm font-medium text-white">{{ user.name }}</div>
+                  <div class="text-xs text-slate-500">{{ user.email }}</div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <div class="flex gap-2 flex-wrap">
+                <span class="chip" *ngFor="let role of (user.access || [])">{{ role }}</span>
+              </div>
+            </td>
+            <td class="px-6 py-4 text-slate-600">{{ user.lastActive | date: 'mediumDate' }}</td>
+            <td class="px-6 py-4 text-slate-600">{{ user.dateAdded | date: 'mediumDate' }}</td>
+            <td class="px-6 py-4">
+              <a class="flex gap-2 items-center text-white bg-Qdark/50 justify-center w-fit px-2 py-1 rounded-lg" [routerLink]="['/dash','user-management', user.id]">
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                  width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-width="2"
+                    d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z" />
+                  <path stroke="currentColor" stroke-width="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                </svg>
+
+                View</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+    <ng-template #loading>
+      <div class="px-6 py-8 text-sm text-slate-500">Loading users…</div>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="space-y-4">
+  <a routerLink="/dash/user-management" class="text-sm text-blue-600 hover:underline">← Back to users</a>
+
+  <div class="card p-6">
+    <h2 class="text-lg font-semibold mb-4">Edit user</h2>
+
+    <div *ngIf="error" class="px-4 py-2 text-sm text-red-700 bg-red-50 border border-red-200 rounded-md mb-4">
+      {{ error }}
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="save()" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm text-slate-600 mb-1">Full name</label>
+        <input class="input" type="text" formControlName="full_name" placeholder="Full name" />
+      </div>
+      <div>
+        <label class="block text-sm text-slate-600 mb-1">Role</label>
+        <input class="input" type="text" formControlName="role" placeholder="e.g., Admin" />
+      </div>
+      <div class="md:col-span-2">
+        <label class="block text-sm text-slate-600 mb-1">Avatar URL</label>
+        <input class="input" type="url" formControlName="avatar_url" placeholder="https://..." />
+      </div>
+
+      <div class="md:col-span-2 flex gap-2">
+        <button class="btn-accent" type="submit" [disabled]="saving || form.invalid">
+          {{ saving ? 'Saving…' : 'Save changes' }}
+        </button>
+        <a class="btn-ghost" [routerLink]="['/dash','user-management', (form.valid ? '' : '')]">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
